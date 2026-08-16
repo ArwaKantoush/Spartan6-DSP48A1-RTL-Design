@@ -58,18 +58,23 @@ The design supports dynamic configuration via dynamic control pins (`OPMODE`) an
 ## 📁 Repository Structure
 
 ```text
-├── rtl/
-│   ├── DSP.v              # Top-level DSP48A1 slice design
-│   └── DSP_REG.v          # Configurable pipeline register module
-├── tb/
-│   ├── DSP_tb.v           # Self-checking testbench with directed & randomized cases
-│   └── run.do             # QuestaSim automation DO-file
-├── syn/
-│   └── constraints.xdc    # Vivado timing constraints (100 MHz clock)
-├── docs/
-│   └── waveforms/         # Simulation & implementation screenshots
+├── Code/
+│   ├── RTL/
+│   │   ├── DSP.v              # Top-level DSP48A1 core module
+│   │   └── DSP_REG.v          # Configurable pipeline register module
+│   ├── Script/
+│   │   └── run.do             # QuestaSim automation script
+│   └── Testbench/
+│       └── DSP_tb.v           # Self-checking verification testbench
+├── constraints/
+│   └── DSP.xdc                # Vivado timing constraints (100 MHz clock)
+├── Docs/
+│   ├── DSP.md                 # Detailed top module port & parameter specifications
+│   ├── DSP_REG.md             # Register module specifications
+│   ├── architecture.md        # DSP architecture and OPMODE mapping
+│   └── verification.md        # Simulation test plan & implementation results
+├── .gitignore
 └── README.md
-
 ```
 
 ## 🧪 Simulation & Verification
