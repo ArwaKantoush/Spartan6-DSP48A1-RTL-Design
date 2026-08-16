@@ -29,8 +29,10 @@ The design supports dynamic configuration via dynamic control pins (`OPMODE`) an
 | :--- | :---: | :---: | :--- |
 | `WIDTH_18` | `18` | Integer | Width of ports A, B, D, BCIN, BCOUT |
 | `WIDTH_48` | `48` | Integer | Width of ports C, PCIN, PCOUT, P |
-| `A0REG`, `A1REG` | `0`, `1` | `0`, `1` | Pipeline stages for port A |
-| `B0REG`, `B1REG` | `0`, `1` | `0`, `1` | Pipeline stages for port B |
+| `A0REG` | `0` | `0`, `1` | Pipeline stages for port A |
+| `A1REG` | `1` | `0`, `1` | Pipeline stages for port A |
+| `B0REG` | `0` | `0`, `1` | Pipeline stages for port B |
+| `B1REG` | `1` | `0`, `1` | Pipeline stages for port B |
 | `CREG`, `DREG`, `MREG`, `PREG` | `1` | `0`, `1` | Pipeline registers for C, D, Multiplier, and P |
 | `CARRYINREG`, `CARRYOUTREG` | `1` | `0`, `1` | Pipeline registers for carry input/output |
 | `OPMODEREG` | `1` | `0`, `1` | Pipeline register for OPMODE control vector |
