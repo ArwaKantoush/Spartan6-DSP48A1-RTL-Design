@@ -73,6 +73,7 @@ The design supports dynamic configuration via dynamic control pins (`OPMODE`) an
 │   ├── DSP_REG.md             # Register module specifications
 │   ├── architecture.md        # DSP architecture and OPMODE mapping
 │   └── verification.md        # Simulation test plan & implementation results
+├── DSP48A1_Report.pdf
 ├── .gitignore
 └── README.md
 ```
