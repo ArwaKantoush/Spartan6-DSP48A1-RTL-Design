@@ -15,8 +15,8 @@ This project presents a fully parameterized RTL implementation of the **Spartan-
 The design supports dynamic configuration via dynamic control pins (`OPMODE`) and static configuration via synthesis-time parameters:
 
 - **18-bit Pre-Adder / Subtractor:** Supports operations like $D \pm B$ prior to multiplication.
-- **18x18 Multiplier:** Produces a 36-bit product ($A \times B$ or $A \times (D \pm B)$).
-- **48-bit Post-Adder / Subtractor / Accumulator:** Supports wide dynamic additions/subtractions ($Z \pm (X + \text{CIN})$).
+- **18x18 Multiplier:** Produces a 36-bit product.
+- **48-bit Post-Adder / Subtractor / Accumulator:** Supports wide dynamic additions/subtractions.
 - **Flexible Pipelining:** Configurable input, intermediate, and output pipeline register stages ($A0, A1, B0, B1, C, D, M, P, \text{CYI}, \text{CYO}$).
 - **Reset Configuration:** Supports selectable synchronous (`SYNC`) or asynchronous (`ASYNC`) active-high resets.
 - **Cascading Support:** Dedicated 18-bit `BCIN`/`BCOUT` and 48-bit `PCIN`/`PCOUT` cascade routes for cascading multiple DSP slices.
