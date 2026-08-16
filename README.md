@@ -72,5 +72,27 @@ The design supports dynamic configuration via dynamic control pins (`OPMODE`) an
 
 ```
 
-🧪 Simulation & VerificationThe design was verified using a self-checking testbench on Mentor Graphics QuestaSim covering corner cases, arithmetic operations, pipelined timing, and resets.Running Simulation via QuestaSim:Bashvsim -do tb/run.do
-🛠️ Synthesis & Implementation ResultsTool: AMD Xilinx Vivado Design SuiteTarget Device: xc7a200tffg1156-3Clock Frequency: $100\text{ MHz}$ ($T = 10.0\text{ ns}$)Timing Slack: Setup & Hold slack met with $0$ failing endpoints.DRC / Linting: Passed with 0 Critical Warnings and 0 Errors.👤 AuthorArwa Ashraf Kantoush
+##🧪 Simulation & Verification
+
+The design was verified using a self-checking testbench on Mentor Graphics QuestaSim covering corner cases, arithmetic operations, pipelined timing, and resets.
+
+##Running Simulation via QuestaSim:
+
+Bash
+```
+
+vsim -do tb/run.do
+
+```
+
+##🛠️ Synthesis & Implementation Results
+
+Tool: AMD Xilinx Vivado Design Suite
+Target Device: xc7a200tffg1156-3
+Clock Frequency: $100\text{ MHz}$ ($T = 10.0\text{ ns}$)
+Timing Slack: Setup & Hold slack met with $0$ failing endpoints.
+DRC / Linting: Passed with 0 Critical Warnings and 0 Errors.
+
+##👤 Author
+
+Arwa Ashraf Kantoush
