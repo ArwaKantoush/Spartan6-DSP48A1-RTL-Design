@@ -1,2 +1,74 @@
 # Spartan6-DSP48A1-RTL-Design
 Parameterized Spartan-6 DSP48A1 Slice RTL design in Verilog. Fully verified with QuestaSim self-checking testbench and synthesized/implemented using AMD Xilinx Vivado.
+
+# Spartan-6 DSP48A1 Slice RTL Design & Verification
+
+![Verilog](https://img.shields.io/badge/Language-Verilog-blue.svg)
+![EDA Tools](https://img.shields.io/badge/EDA-QuestaSim%20%7C%20Vivado-red.svg)
+![FPGA Target](https://img.shields.io/badge/Target-Xilinx%20Artix--7%20xc7a200t-orange.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+
+## 📌 Overview
+This project presents a fully parameterized RTL implementation of the **Spartan-6 DSP48A1** slice in Verilog HDL. The DSP48A1 is a high-performance arithmetic block capable of performing wide multiply, multiply-accumulate (MAC), pre-add/subtract, and post-add/subtract operations optimized for digital signal processing algorithms.
+
+---
+
+## 🏗️ Architecture & Features
+
+The design supports dynamic configuration via dynamic control pins (`OPMODE`) and static configuration via synthesis-time parameters:
+
+- **18-bit Pre-Adder / Subtractor:** Supports operations like $D \pm B$ prior to multiplication.
+- **18x18 Multiplier:** Produces a 36-bit product ($A \times B$ or $A \times (D \pm B)$).
+- **48-bit Post-Adder / Subtractor / Accumulator:** Supports wide dynamic additions/subtractions ($Z \pm (X + \text{CIN})$).
+- **Flexible Pipelining:** Configurable input, intermediate, and output pipeline register stages ($A0, A1, B0, B1, C, D, M, P, \text{CYI}, \text{CYO}$).
+- **Reset Configuration:** Supports selectable synchronous (`SYNC`) or asynchronous (`ASYNC`) active-high resets.
+- **Cascading Support:** Dedicated 18-bit `BCIN`/`BCOUT` and 48-bit `PCIN`/`PCOUT` cascade routes for cascading multiple DSP slices.
+
+---
+
+## ⚙️ Parameters (Generics)
+
+| Parameter | Default | Allowed Values | Description |
+| :--- | :---: | :---: | :--- |
+| `WIDTH_18` | `18` | Integer | Width of ports A, B, D, BCIN, BCOUT |
+| `WIDTH_48` | `48` | Integer | Width of ports C, PCIN, PCOUT, P |
+| `A0REG`, `A1REG` | `0`, `1` | `0`, `1` | Pipeline stages for port A |
+| `B0REG`, `B1REG` | `0`, `1` | `0`, `1` | Pipeline stages for port B |
+| `CREG`, `DREG`, `MREG`, `PREG` | `1` | `0`, `1` | Pipeline registers for C, D, Multiplier, and P |
+| `CARRYINREG`, `CARRYOUTREG` | `1` | `0`, `1` | Pipeline registers for carry input/output |
+| `OPMODEREG` | `1` | `0`, `1` | Pipeline register for OPMODE control vector |
+| `CARRYINSEL` | `"OPMODE5"` | `"OPMODE5"`, `"CARRYIN"` | Carry input multiplexer select |
+| `B_INPUT` | `"DIRECT"` | `"DIRECT"`, `"CASCADE"` | Selects B direct input vs BCIN cascade |
+| `RSTTYPE` | `"SYNC"` | `"SYNC"`, `"ASYNC"` | Reset behavior mode |
+
+---
+
+## 🗂️ OPMODE Truth Table Reference
+
+| Bits | Functionality |
+| :--- | :--- |
+| `OPMODE[1:0]` | **X Mux Select:** `00` (Zero), `01` (Multiplier Output M), `10` (P Accumulator), `11` (Concatenated $\{D[11:0], A[17:0], B[17:0]\}$) |
+| `OPMODE[3:2]` | **Z Mux Select:** `00` (Zero), `01` (PCIN), `10` (P Accumulator), `11` (Port C) |
+| `OPMODE[4]` | **Pre-Adder Bypass:** `0` (Bypass, use B), `1` (Use Pre-Adder Output) |
+| `OPMODE[5]` | **Forced Carry-In:** Carried when `CARRYINSEL = "OPMODE5"` |
+| `OPMODE[6]` | **Pre-Adder Operation:** `0` (Addition: $D + B$), `1` (Subtraction: $D - B$) |
+| `OPMODE[7]` | **Post-Adder Operation:** `0` (Addition: $Z + X + \text{CIN}$), `1` (Subtraction: $Z - (X + \text{CIN})$) |
+
+---
+
+## 📁 Repository Structure
+
+```text
+├── rtl/
+│   ├── DSP.v              # Top-level DSP48A1 slice design
+│   └── DSP_REG.v          # Configurable pipeline register module
+├── tb/
+│   ├── DSP_tb.v           # Self-checking testbench with directed & randomized cases
+│   └── run.do             # QuestaSim automation DO-file
+├── syn/
+│   └── constraints.xdc    # Vivado timing constraints (100 MHz clock)
+├── docs/
+│   └── waveforms/         # Simulation & implementation screenshots
+└── README.md
+🧪 Simulation & VerificationThe design was verified using a self-checking testbench on Mentor Graphics QuestaSim covering corner cases, arithmetic operations, pipelined timing, and resets.Running Simulation via QuestaSim:Bashvsim -do tb/run.do
+🛠️ Synthesis & Implementation ResultsTool: AMD Xilinx Vivado Design SuiteTarget Device: xc7a200tffg1156-3Clock Frequency: $100\text{ MHz}$ ($T = 10.0\text{ ns}$)Timing Slack: Setup & Hold slack met with $0$ failing endpoints.DRC / Linting: Passed with 0 Critical Warnings and 0 Errors.👤 AuthorArwa Ashraf Kantoush
