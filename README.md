@@ -76,7 +76,7 @@ The design supports dynamic configuration via dynamic control pins (`OPMODE`) an
 
 The design was verified using a self-checking testbench on Mentor Graphics QuestaSim covering corner cases, arithmetic operations, pipelined timing, and resets.
 
-##Running Simulation via QuestaSim:
+### Running Simulation via QuestaSim:
 
 Bash
 ```
