@@ -51,7 +51,7 @@ The design supports dynamic configuration via dynamic control pins (`OPMODE`) an
 | `OPMODE[4]` | **Pre-Adder Bypass:** `0` (Bypass, use B), `1` (Use Pre-Adder Output) |
 | `OPMODE[5]` | **Forced Carry-In:** Carried when `CARRYINSEL = "OPMODE5"` |
 | `OPMODE[6]` | **Pre-Adder Operation:** `0` (Addition: $D + B$), `1` (Subtraction: $D - B$) |
-| `OPMODE[7]` | **Post-Adder Operation:** `0` (Addition: $Z + X + \text{CIN}$), `1` (Subtraction: $Z - (X + \text{CIN})$) |
+| `OPMODE[7]` | **Post-Adder Operation:** `0` (Addition: $Z + X + \text{CIN}$), `1` (Subtraction: Z - (X + CIN) |
 
 ---
 
