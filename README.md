@@ -3,7 +3,6 @@
 ![Verilog](https://img.shields.io/badge/Language-Verilog-blue.svg)
 ![EDA Tools](https://img.shields.io/badge/EDA-QuestaSim%20%7C%20Vivado-red.svg)
 ![FPGA Target](https://img.shields.io/badge/Target-Xilinx%20Artix--7%20xc7a200t-orange.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ## 📌 Overview
 This project presents a fully parameterized RTL implementation of the **Spartan-6 DSP48A1** slice in Verilog HDL. The DSP48A1 is a high-performance arithmetic block capable of performing wide multiply, multiply-accumulate (MAC), pre-add/subtract, and post-add/subtract operations optimized for digital signal processing algorithms.
