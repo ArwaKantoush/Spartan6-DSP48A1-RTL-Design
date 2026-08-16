@@ -64,10 +64,10 @@ The design supports dynamic configuration via dynamic control pins (`OPMODE`) an
 │   │   └── DSP_REG.v          # Configurable pipeline register module
 │   ├── Script/
 │   │   └── run.do             # QuestaSim automation script
-│   └── Testbench/
-│       └── DSP_tb.v           # Self-checking verification testbench
-├── constraints/
-│   └── DSP.xdc                # Vivado timing constraints (100 MHz clock)
+│   ├── Testbench/
+│   │   └── DSP_tb.v           # Self-checking verification testbench
+|   └── constraints/
+│       └── DSP.xdc            # Vivado timing constraints (100 MHz clock)
 ├── Docs/
 │   ├── DSP.md                 # Detailed top module port & parameter specifications
 │   ├── DSP_REG.md             # Register module specifications
